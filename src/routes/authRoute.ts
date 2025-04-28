@@ -1,9 +1,12 @@
 import { AuthController } from "../controller/authController";
 import { FakeService } from "../db/fake/fakeService";
 import { AuthHandler } from "../handler/authHandler";
+import cors from 'cors';
 import express from "express";
 
 const auth = express.Router();
+
+auth.use(cors());
 
 const fakeService = new FakeService();
 const authController = new AuthController(fakeService);

@@ -12,6 +12,6 @@ const fakeService = new FakeService();
 const authController = new AuthController(fakeService);
 const authHandler = new AuthHandler(authController);
 
-auth.get("/", authHandler.getDatosUsuario.bind(authHandler));
+auth.post("/", authHandler.getDatosUsuario.bind(authHandler));
 
 export default auth;

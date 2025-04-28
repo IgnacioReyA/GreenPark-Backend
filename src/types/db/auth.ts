@@ -1,5 +1,6 @@
 export interface Datos {
     usuario: string;
     contrasena: string;
-    token: string;
+    nombrecompleto: string;
+    numerodeboleto: string;
 }

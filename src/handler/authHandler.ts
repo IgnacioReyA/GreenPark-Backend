@@ -1,9 +1,10 @@
 import { AuthController } from "../controller/authController";
-import express, {Request, Response} from 'express'
+import express, { Request, Response } from 'express';
 
 export class AuthHandler {
     authController: AuthController;
-    constructor (authController: AuthController){
+
+    constructor(authController: AuthController) {
         this.authController = authController;
     }
 
@@ -13,10 +14,14 @@ export class AuthHandler {
             const { usuario, contrasena } = request.body;
 
             // Call the `getAuth` method with the extracted parameters
-            const auth = await this.authController.getAuth(usuario, contrasena);
+            const user = await this.authController.getAuth(usuario, contrasena);
 
-            if (auth) {
-                response.json({ token: auth }); // Return the token if authentication is successful
+            if (user) {
+                // Return `nombrecompleto` and `numerodeboleto` in the response
+                response.json({
+                    nombrecompleto: user.nombrecompleto,
+                    numerodeboleto: user.numerodeboleto,
+                });
             } else {
                 response.status(401).json({ error: 'Invalid credentials' }); // Return 401 for invalid credentials
             }
